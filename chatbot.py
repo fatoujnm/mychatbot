@@ -10,9 +10,13 @@ nltk.download('stopwords')
 nltk.download('wordnet')
 
 # Load the text file and preprocess the data
-file_path = 'C:/Users/dell/Desktop/chatbot/15080-8.txt'
-with open(file_path, 'r', encoding='latin-1') as f:
-    data = f.read().replace('\n', ' ')
+file_path = '15080-8.txt'  # Chemin relatif du fichier
+try:
+    with open(file_path, 'r', encoding='latin-1') as f:
+        data = f.read().replace('\n', ' ')
+except FileNotFoundError as e:
+    st.error(f"Erreur : {e}")
+    st.stop()
 
 # Tokenize the text into sentences
 sentences = nltk.sent_tokenize(data)
@@ -72,5 +76,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
